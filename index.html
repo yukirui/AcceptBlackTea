@@ -27,7 +27,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input type="button" data-bs-dismiss="modal" class="btn btn-danger btn-block" value="/remake" onclick="Game.start();">
+                    <a class="btn btn-default btn-block" onclick="window.location.reload()">返回菜单</a>
+                    <input type="button" data-bs-dismiss="modal" class="btn btn-default btn-block" value="/remake" onclick="Game.start();">
                 </div>
             </div>
         </div>
@@ -43,7 +44,9 @@
         <h1 class="text-center" style="color: #ffff64">要喝红茶</h1>
         <br>
         <div style="text-align: center;">
-            <input type="button" class="btn btn-primary btn-lg" value="开始喝红茶" onclick="closeWelcome(); Game.start();">
+            <a class="btn btn-primary btn-lg" onclick="closeWelcome(); Game.start();">开始喝红茶</a>
+            <br> <br>
+            <a class="btn btn-secondary btn-lg" href="https://space.bilibili.com/381759497">作者B站空间</a>
         </div>
     </div>
 
