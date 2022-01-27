@@ -73,3 +73,7 @@ html, body {
     text-align: center;
     transform: translate(-50%, -50%);
 }
+
+.stroke {
+    text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
+}
