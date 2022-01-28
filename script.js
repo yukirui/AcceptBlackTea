@@ -64,7 +64,7 @@ class Senpai {
     g.lineY = g.height * 0.7;
     g.FPS = 60;
     g.animation = $('#animation');
-    g.initHP = 3;
+    g.initHP = 5;
 
     createjs.Sound.registerSound({
         src: "./music/drink.mp3",
@@ -126,10 +126,10 @@ class Senpai {
             let t = new Tea(senpai.x, randInt(15, 65) / 100);
             set.add(t);
             t.start(() => {
+                hp--;
+                updateHP(hp);
                 if (hp !== 0) {
                     play("error");
-                    hp--;
-                    updateHP(hp);
                 } else {
                     clearInterval(teaInterval);
                     set.forEach(t => clearInterval(t.interval));
