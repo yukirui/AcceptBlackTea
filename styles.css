@@ -23,8 +23,8 @@ html, body {
 }
 
 .tea {
-    width: 65px;
-    height: 90px;
+    width: 55px;
+    height: 85px;
     position: absolute;
     background-image: url(./img/tea.png);
     background-size: cover;
