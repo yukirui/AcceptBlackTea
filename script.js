@@ -106,11 +106,16 @@ class Senpai {
         $('#hp').text(hp);
     }
 
+    function updateScore(score) {
+        $('#score-display').text(score);
+    }
+
     g.start = function() {
         $('.tea').each((i, t) => t.remove());
 
         let score = 0, hp = g.initHP;
         updateHP(hp);
+        updateScore(score);
 
         const senpai = new Senpai();
         const set = new Set();
@@ -136,6 +141,7 @@ class Senpai {
                     set.delete(t);
                     t.remove();
                     score++;
+                    updateScore(score);
                 }
             });
         }, g.teaIntervalMS);
