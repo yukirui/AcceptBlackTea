@@ -118,7 +118,7 @@ class Senpai {
         createjs.Sound.stop();
 
         let teaInterval = setInterval(() => {
-            let t = new Tea(senpai.x, randInt(15, 50) / 100);
+            let t = new Tea(senpai.x, randInt(15, 65) / 100);
             set.add(t);
             t.start(() => {
                 hp--;
