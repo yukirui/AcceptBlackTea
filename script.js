@@ -20,7 +20,7 @@ class Tea {
         this.velocity += this.gravity;
         this.y += this.velocity;
 
-        this.div.css('top', this.y + 'px').css('left', this.x + 'px');
+        this.div.css('top', this.y+ 'px').css('left', this.x + 'px');
     }
 
     remove() {
@@ -57,10 +57,9 @@ class Senpai {
     g.div = $('#game');
     g.width = g.div.width();
     g.height = g.div.height();
-    g.heightTea = 45;
-    g.widthSenpai = 40;
-    g.widthSushino = 40;
-    g.heightSenpai = 40;
+    g.heightTea = 100;
+    g.widthSenpai = 75;
+    g.heightSenpai = 75;
     g.teaIntervalMS = 750;
     g.lineY = g.height * 0.7;
     g.FPS = 60;
@@ -110,11 +109,11 @@ class Senpai {
                 set.forEach(t => clearInterval(t.interval));
                 gameOver(score);
             }, () => {
-                if (t.y > g.lineY) {
+                if (t.y + g.heightTea > g.lineY) {
                     createjs.Sound.stop();
+                    createjs.Sound.play("drink");
                     set.delete(t);
                     t.remove();
-                    createjs.Sound.play("drink");
                     score++;
                 }
             });
