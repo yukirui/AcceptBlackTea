@@ -64,6 +64,7 @@ class Senpai {
     g.lineY = g.height * 0.7;
     g.FPS = 60;
     g.animation = $('#animation');
+    g.initHP = 3;
 
     createjs.Sound.registerSound({
         src: "./music/drink.mp3",
@@ -74,6 +75,16 @@ class Senpai {
         src: "./music/error.mp3",
         id: "error"
     });
+
+    createjs.Sound.registerSound({
+        src: "./music/end.mp3",
+        id: "end"
+    });
+
+    function play(name) {
+        createjs.Sound.stop();
+        createjs.Sound.play(name);
+    }
 
     function randInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -88,14 +99,19 @@ class Senpai {
         senpai.css('left', senpai.css('left')).removeClass('senpaimove');
         $('#score').text(score);
         $('#game-over').modal({backdrop: 'static'}).modal('show');
-        createjs.Sound.play("error");
+        play("end");
+    }
+
+    function updateHP(hp) {
+        $('#hp').text(hp);
     }
 
     g.start = function() {
-
         $('.tea').each((i, t) => t.remove());
 
-        let score = 0;
+        let score = 0, hp = g.initHP;
+        updateHP(hp);
+
         const senpai = new Senpai();
         const set = new Set();
         g.setEvents();
@@ -105,13 +121,18 @@ class Senpai {
             let t = new Tea(senpai.x, randInt(15, 30) / 100);
             set.add(t);
             t.start(() => {
-                clearInterval(teaInterval);
-                set.forEach(t => clearInterval(t.interval));
-                gameOver(score);
+                hp--;
+                updateHP(hp);
+                if (hp !== 0) {
+                    play("error");
+                } else {
+                    clearInterval(teaInterval);
+                    set.forEach(t => clearInterval(t.interval));
+                    gameOver(score);
+                }
             }, () => {
                 if (t.y + g.heightTea > g.lineY) {
-                    createjs.Sound.stop();
-                    createjs.Sound.play("drink");
+                    play("drink");
                     set.delete(t);
                     t.remove();
                     score++;
