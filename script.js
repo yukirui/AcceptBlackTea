@@ -6,7 +6,7 @@ class Tea {
     constructor(x, gravity) {
         this.gravity = gravity;
         this.velocity = 0;
-        this.y = Game.heightSenpai;
+        this.y = Game.heightSenpai + Game.heightTea;
         this.x = x;
 
         this.div = $('<div class="tea">');
