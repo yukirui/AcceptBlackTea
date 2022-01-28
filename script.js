@@ -126,15 +126,15 @@ class Senpai {
             let t = new Tea(senpai.x, randInt(15, 65) / 100);
             set.add(t);
             t.start(() => {
-                updateHP(hp);
                 if (hp !== 0) {
                     play("error");
+                    hp--;
+                    updateHP(hp);
                 } else {
                     clearInterval(teaInterval);
                     set.forEach(t => clearInterval(t.interval));
                     gameOver(score);
                 }
-                hp--;
             }, () => {
                 if (t.y + g.heightTea > g.lineY) {
                     play("drink");
